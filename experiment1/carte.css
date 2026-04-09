@@ -1,0 +1,62 @@
+.carte{
+    background-color: white;
+    width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    padding: 30px;
+    text-align: center;
+    margin: 50px auto;
+}
+
+body{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar img{
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    transition: transform 0.3s;
+}
+
+.text-group h2{
+    margin-bottom: 5px;   
+}
+
+.text-group p:first-of-type{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+hr{
+    height: 2px;
+    border: none;
+    background: linear-gradient(to right, 
+        rgba(118, 75, 162, 0) 0%,    /* 左侧完全透明 */
+        rgb(102, 58, 145) 50%,   /* 中间完全不透明 */
+        rgba(118, 75, 162, 0) 100%   /* 右侧完全透明 */
+    );
+    margin: 20px auto;
+    
+}
+
+.links a{
+    display: block;
+    text-decoration: none;
+    color: gray;
+    font-size: 15px;
+}
