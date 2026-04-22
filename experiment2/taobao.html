@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="taobao.css">
+    <title>Layout</title>
+</head>
+<body>
+<div class="layout">
+    <div class="buttons">
+        <button class="tab-btn active" onclick="switchTab(0)">商品详情</button>
+        <button class="tab-btn" onclick="switchTab(1)">参数规格</button>
+        <button class="tab-btn" onclick="switchTab(2)">用户评价</button>
+    </div>
+
+    <div class="container">
+        <div class="wordsplay" style="display: block;">
+            <div class="pic">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCoPuWVH36cCbS7uPbxaFo-QHmdu9eoVLiLg&s">
+            </div>
+            <h3>超级自我潮流帽衫</h3>
+            <p>这款帽衫采用优质纯棉面料，经过特殊水洗工艺处理，柔软亲肤而不易起球，在冬天温暖你心！穿上自动屏蔽酸民，秒变大王。</p>
+        </div>
+        <div class="wordsplay" style="display: none;">
+            <p>设计细节：100%没抄袭SUPERME</p>
+            <p>面料：100%新疆棉，0%比利时棉</p>
+        </div>
+        <div class="wordsplay" style="display: none;">
+            <div class="comment-container">
+                <div class="comment-item">
+                        <div class="comment-header">
+                            <span class="user-name">林清醒</span>
+                            <span class="stars">⭐⭐⭐⭐☆</span>
+                        </div>
+                        <div class="comment-content">
+                            认同，+1
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <span class="user-name">籽岷</span>
+                            <span class="stars">⭐☆☆☆☆</span>
+                        </div>
+                        <div class="comment-content">
+                            woc,不是吧
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <span class="user-name">龙哥快跑</span>
+                            <span class="stars">☆☆☆☆☆</span>
+                        </div>
+                        <div class="comment-content">
+                            0分里的0分
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function switchTab(idx){
+        var buttons = document.getElementsByClassName('tab-btn');
+        var contents = document.getElementsByClassName('wordsplay');
+
+        for(var i = 0; i < contents.length; i++){
+            contents[i].style.display = 'none';
+            buttons[i].classList.remove('active');
+        }
+
+        contents[idx].style.display = 'block';
+        buttons[idx].classList.add('active');
+    }
+</script>
+</body>
+</html>
