@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pt3</title>
+</head>
+<body>
+<div class="form-group">
+    <label>所在地：</label>
+    <select id="province" onchange="changeCity()">
+        <option value="-1">--请选择省份--</option>
+        <option value="0">江苏省</option>
+        <option value="1">浙江省</option>
+        <option value="2">安徽省</option>
+    </select>
+
+    <select id="city">
+        <option value="-1">--请选择城市--</option>
+    </select>
+</div>
+
+<script>
+    function changeCity(){
+        var cities = [
+            ["苏州市","无锡市","常州市","张家港市"],
+            ["杭州市","宁波市","绍兴市","温州市"],
+            ["南京市","合肥市","马鞍山市"]
+        ];
+
+        var provinceSelect = document.getElementById("province");
+        var citySelect = document.getElementById("city");
+
+        var idx = provinceSelect.selectedIndex - 1;
+        citySelect.options.length = 1;
+
+        if(idx >= 0){
+            for(var i = 0; i < cities[idx].length; i++){
+                citySelect.options.add(new Option(cities[idx][i], i));
+            }
+        }
+    }
+</script>
+</body>
+</html>

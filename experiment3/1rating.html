@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rating</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div id="star-rating">
+    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+</div>
+
+<style>
+    #star-rating span { 
+        font-size: 30px; cursor: pointer; color: #ccc; 
+    }
+    #star-rating span.active { 
+        color: #ffcc00; 
+    } 
+</style>
+
+<script>
+$(document).ready(function(){
+    $("#star-rating span").hover(function(){
+        // 鼠标移入：当前及之前的星星变实心并加黄色 [cite: 51]
+        $(this).text("★").addClass("active").prevAll().text("★").addClass("active");
+    }, function(){
+        // 鼠标移出：恢复为空心灰色
+        $(this).text("☆").removeClass("active").prevAll().text("☆").removeClass("active");
+    });
+});
+</script>
+</body>
+</html>

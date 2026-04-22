@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="select">
+    <input type="checkbox">原神<br>
+    <input type="checkbox">鸣潮<br>
+    <input type="checkbox">王者荣耀<br>
+    <input type="checkbox">第五人格<br>
+    <button type="button" id="all">全选</button>
+    <button type="button" id="none">全不选</button>
+    <button type="button" id="reverse">反选</button>
+</div>
+
+<script>
+    $(document).ready(function{
+        $("#all").click(function{$("input[type='checkbox']").prop("checked",true)});
+        $("#none").click(function{$("input[type='checkbox']").prop("checked",false)});
+        $("#reverse").click(function{
+            $("input[type='checbox']").each(function(){
+                $(this).prop("checked", !$(this).prop("checked"));
+            })
+        })
+    })
+</script>
+
+</body>
+</html>

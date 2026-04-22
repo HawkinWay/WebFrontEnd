@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>countdown</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="countdown">
+    <button id="reg-btn" disabled>请阅读用户协议(10)</button>
+</div>
+
+<script>
+    $(document).ready(function(){
+        var count = 10;
+        var timer = setInterval(function(){
+            count--;
+            if(count > 0){
+                $("#reg-btn").text("请阅读用户协议(" + count + ")");
+            }
+            else{
+                $("#reg-btn").prop("disabled", false).text("同意并注册");
+            }
+        }, 1000);
+    });
+</script>
+</body>
+</html>
