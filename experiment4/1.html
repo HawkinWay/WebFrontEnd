@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form1" name="form1" method="post" action="">
+        E-mail: <input type="email" name="user_email" /><br>
+        
+        URL: <input type="url" name="user_url" placeholder="http://" /><br>
+        
+        数值: <input type="number" name="user_number" min="1" max="100" value="30" /><br>
+
+        日期: <input type="date" name="user_date" /><br>
+
+        颜色: <input type="color" name="user_color" id="themecolor" /><br>
+
+        搜索: <input list="engines">
+        <datalist id="engines">
+            <option value="百度"></option>
+            <option value="Google"></option>
+        </datalist>
+        
+        <button type="submit" name="submit" id="submit">提交</button>
+        <button type="reset" name="reset" id="reset">重设</button><br>
+
+        数字A: <input type="number" id="num_a" value="0" oninput="resCalc()"> +
+        数字B: <input type="number" id="num_b" value="0" oninput="resCalc()"> =
+        <output id="result" for="num_a num_b">0</output>
+        <script>
+             function resCalc() {
+            var a = parseInt(document.getElementById("num_a").value) || 0;
+            var b = parseInt(document.getElementById("num_b").value) || 0;
+            document.getElementById("result").value = a + b;
+        }
+        </script><br>
+
+        验证空：<input type="text" id="username" required>
+        <button type="button" onclick="checkForm()">验证</button>
+        <script>
+            function checkForm(){
+                var txt = document.getElementById("username");
+                if (!txt.checkValidity()) {
+                    alert(txt.validationMessage);
+                } 
+            }
+        </script><br>
+
+        密码: <input type="password" id="user_password" required>
+        <button type="button" onclick="checkPassword()">验证</button>
+        <script>
+            function checkPassword(){
+                var pwd = document.getElementById("user_password");
+                if(!pwd.checkValidity()){
+                    alert(pwd.validationMessage);
+                }
+            }
+        </script>
+    </form>
+
+</body>
+</html>

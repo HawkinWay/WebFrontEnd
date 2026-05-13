@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 File API 实验</title>
+</head>
+<body>
+    <input type="file" id="files" multiple>
+    <button onclick="handleFiles()">处理文件</button>
+
+    <hr>
+
+    <h3>文件信息</h3>
+    <div id="fileInfo"></div>
+
+    <hr>
+
+    <h3>文本文件内容</h3>
+    <pre id="textContent"></pre>
+
+    <hr>
+
+    <h3>图片预览</h3>
+    <img id="imagePreview" width="300">
+
+    <script>
+        // window.onload = function () {
+        //     if (window.File && window.FileReader && window.FileList && window.Blob) {
+        //         alert("当前浏览器支持 HTML5 File API");
+        //     } else {
+        //         alert("当前浏览器不支持 HTML5 File API");
+        //     }
+        // }
+
+        function handleFiles() {
+            var files = document.getElementById("files").files;
+
+            if (files.length === 0) {
+                alert("请选择文件");
+                return;
+            }
+
+            var info = "";
+
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+
+                info += "文件名: " + file.name + "<br>";
+                info += "文件大小: " + file.size + " bytes<br><br>";
+
+                if (file.type.startsWith("text")) {
+                    var textReader = new FileReader();
+
+                    textReader.onload = function (e) {
+                        document.getElementById("textContent").textContent = e.target.result;
+                    }
+
+                    textReader.readAsText(file);
+                }
+                else if (file.type.startsWith("image")) {
+                    var imageReader = new FileReader();
+
+                    imageReader.onload = function (e) {
+                        document.getElementById("imagePreview").src = e.target.result;
+                    }
+
+                    imageReader.readAsDataURL(file);
+                }
+            }
+
+            document.getElementById("fileInfo").innerHTML = info;
+        }
+    </script>
+
+</body>
+</html>
