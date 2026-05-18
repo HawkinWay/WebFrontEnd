@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <titile>地理位置</title>
+
+    <style>
+        body, html{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        #map-container{
+            width: 100%;
+            height: 80vh;
+        }
+        
+        #info{
+            padding: 15px;
+            background: #f4f4f5;
+            height: 20vh;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=lKAdm5TH7IQLAEYJ2jjQZjuUXruJabbg"></script>
+</head>
+<body>
+    <div id="map-container"></div>
+    <div id="info">
+        <h3>定位状态</h3>
+        <p id="status">正在尝试获取您的位置</p>
+    </div>
+    <script>
+        const statusText = document.getElementById('status');
+        let map;
+
+        function initMap(){
+            map = new BMapGL.Map("map-container");
+            const defaultPoint = new BMapGL.Point(116.404, 39.915);
+            map.centerAndZoom(defaultPoint, 15);
+            map.enableScrollWheelZoom(true);
+        }
+
+        function showError(msg){
+            statusText.style.color = 'red';
+            statusText.innerText = msg;  
+        }
+
+        function getMyLocation(){
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(locationSuccess, locationError,{
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge:3000
+                });
+            }else{
+                showError("不支持地理定位服务！");
+            }
+        }
+
+        function locationError(error){
+            switch(error.code){
+                case error.TIMEOUT:
+                    showError("定位超时,请重试!");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    showError("抱歉，无法检测到您的当前位置。");
+                    break;
+                case error.PERMISSION_DENIED:
+                    showError("请允许浏览器访问您的位置信息。");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    showError("发生了未知错误！");
+                    break;
+            }
+        }
+
+        function locationSuccess(position){
+            const lon = position.coords.longitude;
+            const lat = position.coords.latitude;
+
+            statusText.style.color  = 'green';
+            statusText.innerText = `原生GPS坐标获取成功!经度: ${lon.toFixed(4)},纬度: ${lat.toFixed(4)}。正在转换偏离值...`;
+
+            const convertor = new BMapGL.convertor();
+            const pointArr = [new BMapGL.Point(lon, lat)];
+
+            convertor.translate(pointArr, 1, 5, function(data) {
+                if(data.status === 0) {
+                    const baiduPoint = data.points[0];
+
+                    statusText.innerText = `定位成功！已切换至当前位置。`;
+
+                    map.panTo(baiduPoint);
+                    map.setZoom(18);
+
+                    map.clearOverlays();
+                    const marker = new BMapGL.Marker(baiduPoint);
+                    map.addOverlay(marker);
+
+                    const infoWindow = new BMapGL.InfoWindow("您当前大概在这里", {
+                        width: 150,
+                        height: 60,
+                        title: "当前位置"
+                    });
+                    marker.addEventListener("click", function(){
+                        map.openInfoWindow(infoWindow, baiduPoint);
+                    });
+                    map.openInfoWindow(infoWindow, baiduPoint);
+                } else {
+                    showError("百度坐标转换失败！");
+                }
+            });
+        }
+
+        window.onload = function(){
+            initMap();
+            getMyLocation();
+        };
+    </script>
+
+</body>
+</html>

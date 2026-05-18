@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        canvas{
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="clockCanvas" width="320" height="320"></canvas>
+
+    <script>
+        const canvas = document.getElementById('clockCanvas');
+        const ctx = canvas.getContext('2d');
+        const radius = canvas.width / 2;
+
+        function drawClock(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.save();
+            ctx.translate(radius, radius);
+
+            ctx.beginPath();
+            ctx.arc(0, 0, radius - 10, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill(); 
+            ctx.lineWidth = 10;
+            ctx.strokeStyle = '#333';
+            ctx.stroke();
+
+            for (let i = 0; i < 60; i++) {
+                ctx.save();
+                ctx.rotate(i * Math.PI / 30);
+                ctx.beginPath();
+                
+                if (i % 15 === 0) {
+                    ctx.lineWidth = 6;
+                    ctx.strokeStyle = '#111';
+                    ctx.moveTo(0, -radius + 10);
+                    ctx.lineTo(0, -radius + 26);
+                } else if (i % 5 === 0) {
+                    ctx.lineWidth = 4;
+                    ctx.strokeStyle = '#888';
+                    ctx.moveTo(0, -radius + 10);
+                    ctx.lineTo(0, -radius + 22);
+                } else {
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = '#ddd';
+                    ctx.moveTo(0, -radius + 10);
+                    ctx.lineTo(0, -radius + 16);
+                }
+                ctx.stroke();
+                ctx.restore(); 
+            }
+
+            ctx.font = "bold 20px sans-serif";
+            ctx.textBaseline = "middle";
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#333";
+            for (let i = 1; i <= 12; i++) {
+                let angle = (i * Math.PI / 6) - (Math.PI / 2);
+                let x = Math.cos(angle) * (radius - 45);
+                let y = Math.sin(angle) * (radius - 45);
+                ctx.fillText(i.toString(), x, y);
+            }
+
+            const now = new Date();
+            const hr = now.getHours() % 12;
+            const min = now.getMinutes();
+            const sec = now.getSeconds();
+            const ms = now.getMilliseconds();
+
+            const secAngle = ((sec + ms / 1000) * Math.PI / 30);
+            const minAngle = (min * Math.PI / 30) + (secAngle / 60);
+            const hrAngle = (hr * Math.PI / 6) + (minAngle / 12);
+
+            ctx.save();
+            ctx.rotate(hrAngle);
+            ctx.lineWidth = 8;
+            ctx.lineCap = "round";
+            ctx.strokeStyle = "#333";
+            ctx.beginPath();
+            ctx.moveTo(0, 10);
+            ctx.lineTo(0, -60);
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.save();
+            ctx.rotate(minAngle);
+            ctx.lineWidth = 6;
+            ctx.lineCap = "round";
+            ctx.strokeStyle = "#666";
+            ctx.beginPath();
+            ctx.moveTo(0, 15);
+            ctx.lineTo(0, -95);
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.save();
+            ctx.rotate(secAngle);
+            ctx.lineWidth = 2.5;
+            ctx.lineCap = "round";
+            ctx.strokeStyle = "#ff3b30";
+            ctx.beginPath();
+            ctx.moveTo(0, 25);
+            ctx.lineTo(0, -115);
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.beginPath();
+            ctx.arc(0, 0, 7, 0, 2 * Math.PI);
+            ctx.fillStyle = '#333';
+            ctx.fill();
+
+            ctx.restore();
+            requestAnimationFrame(drawClock);
+
+        }
+
+        requestAnimationFrame(drawClock);
+    </script>
+</body>
+</html>
