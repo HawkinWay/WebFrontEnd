@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="clock" id="clock">
+        <div class="hand hour" id="hourHand"></div>
+        <div class="hand minute" id="minuteHand"></div>
+        <div class="hand second" id="secondHand"></div>
+    </div>
+
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            margin: 0;
+            background-color: #f0f2f5;
+            font-family: sans-serif;
+        }
+
+        .clock{
+            width: 300px;
+            height: 300px;
+            background-color: #fff;
+            border: 10px solid #333;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .clock::after{
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background-color: #333;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .mark{
+            position: absolute;
+            width: 2px;
+            height: 150px;
+            left: 50%;
+            margin-left: -1px;
+            bottom: 50%;
+            transform-origin: bottom center;
+        }
+
+        .mark::before{
+            content: '';
+            display: block;
+            width: 100%;
+            height: 6px;
+            background-color: #ddd;
+            border-radius: 1px;
+        }
+
+        .mark.hour-mark::before{
+            height: 12px;
+            background-color: #888;
+            width: 4px;
+        }
+
+        .mark.main-hour-mark::before{
+            height: 16px;
+            background-color: #111;
+            width: 6px;
+        }
+
+        .number-box{
+            position: absolute;
+            width: 30px;
+            height: 150px;
+            left: 50%;
+            margin-left: -15px;
+            bottom: 50%;
+            transform-origin: bottom center;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .number-box span{
+            display: inline-block;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 18px;
+        }
+
+        .hand{
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            background-color: #333;
+            border-radius: 4px;
+            transition: transform 0.05s cubic-bezier(0.1, 2.7, 0.58, 1);
+        }
+
+        .hour{
+            width: 8px;
+            height: 60px;
+            margin-left: -4px;
+            z-index: 3;
+        }
+
+        .minute{
+            width: 6px;
+            height: 90px;
+            margin-left: -3px;
+            z-index: 4;
+            background-color: #666;
+        }
+
+        .second{
+            width: 3px;
+            height: 110px;
+            margin-left: -1.5px;
+            z-index: 5;
+            background-color: #ff3b30;
+        }
+    </style>
+    <script>
+        const clock  = document.getElementById('clock');
+        const hourHand = document.getElementById('hourHand');
+        const minuteHand = document.getElementById('minuteHand');
+        const secondHand = document.getElementById('secondHand');
+
+        function createMarks(){
+            for(let i = 0; i < 60; i++){
+                const mark = document.createElement('div');
+                mark.className = 'mark';
+
+                const degrees = i * 6;
+                mark.style.transform = `rotate(${degrees}deg)`;
+
+                if(i % 15 === 0){
+                    mark.classList.add('main-hour-mark');
+                    mark.style.marginLeft = '-3px';
+                }else if(i % 5 === 0){
+                    mark.classList.add('hour-mark');
+                    mark.style.marginLeft = '-2px';
+                }
+                clock.appendChild(mark);
+            }
+        }
+
+        function createNumbers(){
+            for(let i = 1; i <= 12; i ++){
+                const numBox = document.createElement('div');
+                numBox.className = 'number-box';
+    
+                const degrees = i * 30;
+                numBox.style.transform = `rotate(${degrees}deg)`;
+    
+                const numSpan = document.createElement('span');
+                numSpan.innerText = i;
+    
+                numSpan.style.transform = `rotate(${-degrees}deg)`;
+    
+                numBox.appendChild(numSpan);
+                clock.appendChild(numBox);
+            }
+        }
+
+        createMarks();
+        createNumbers();
+
+        function setClock(){
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+
+            const secondsDegrees = seconds * 6;
+            const minutesDegrees = (minutes * 6) + (seconds / 60 * 6);
+            const hoursDegrees = ((hours % 12) * 30) + (minutes * 0.5);
+
+            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+            minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+            hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+        }
+        setClock();
+        setInterval(setClock, 1000);
+    </script>
+</body>
+</html>

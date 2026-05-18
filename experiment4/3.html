@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+</head>
+<body>
+    <h1>视频作为页面背景</h1>
+    <video id="video" src="https://youtu.be/wMtRwzt36qM" muted autoplay loop playsinline></video>
+
+
+    <div class="playerbox">
+        <div class="screen" id="screen"></div>
+        <div class="controls">
+            <button onclick="prevSong()">⏮ 上一首</button>
+            <button onclick="playSong()" id="playButton">▶ 播放</button>
+            <button onclick="nextSong()">⏭ 下一首</button>
+        </div>
+    </div>
+
+    <audio id="audio"></audio>
+
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: sans-serif;
+        }
+
+        #video{
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            opacity: 0.5;
+            object-fit: cover;
+        }
+
+        h1{
+            position: absolute;
+            top: 20px;
+            color: #333;
+        }
+
+        .playerbox{
+            width: 350px;
+            height: 250px;
+            background-color: rgb(185, 75, 75);
+            border-radius: 20px;
+            box-shadow: 0 0 15px gray;
+            text-align: center;
+            padding: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .screen{
+            width: 100%;
+            height: 150px;
+            background-color: #333;
+            margin: 2px auto 0 auto;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        .controls{
+            margin-top: 30px;
+        }
+
+        button{
+            width: 90px;
+            height: 30px;
+            margin: 0 11px;
+            border: none;
+            border-radius: 3px;
+            background-color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: lightgray;
+        }
+    </style>
+
+    <script>
+        const playlist = [
+            { title: "示例音乐 1", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            { title: "示例音乐 2", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+            { title: "示例音乐 3", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
+        ];
+
+        let currentSong = 0;
+        let isPlaying = false;
+
+        const audio = document.getElementById('audio');
+        const screen = document.getElementById('screen');
+        const playButton = document.getElementById('playButton');
+
+        function initPlayer(index) {
+            screen.innerText = playlist[index].title;
+        }
+        initPlayer(currentSong);
+
+        function loadSong(index){
+            audio.src = playlist[index].src;
+            screen.innerText = playlist[index].title;
+        }
+
+        function playSong(){
+            if (!audio.src) {
+                loadSong(currentSong);
+            }
+
+            if(isPlaying){
+                audio.pause();
+                isPlaying = false;
+                playButton.innerText = "▶ 播放";
+            } else {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    playButton.innerText = "⏸ 暂停";
+                }).catch(err => {
+                    alert("播放失败!");
+                    console.error("播放失败原因:", err);
+                });
+            }
+        }
+
+        function nextSong(){
+            currentSong++;
+            if(currentSong >= playlist.length){
+                currentSong = 0;
+            }
+            loadSong(currentSong);
+            
+            isPlaying = false;
+            playSong();
+        }
+
+        function prevSong(){
+            currentSong--;
+            if(currentSong < 0){
+                currentSong = playlist.length - 1;
+            }
+            loadSong(currentSong);
+            
+            isPlaying = false;
+            playSong();
+        }
+
+        audio.addEventListener('ended', nextSong);
+    </script>
+
+</body>
+</html>

@@ -8,25 +8,25 @@
 </head>
 <body>
 <div class="select">
-    <input type="checkbox">原神<br>
-    <input type="checkbox">鸣潮<br>
-    <input type="checkbox">王者荣耀<br>
-    <input type="checkbox">第五人格<br>
+    <input type="checkbox" id="原神">原神<br>
+    <input type="checkbox" id="鸣潮">鸣潮<br>
+    <input type="checkbox" id="王者荣耀">王者荣耀<br>
+    <input type="checkbox" id="第五人格">第五人格<br>
     <button type="button" id="all">全选</button>
     <button type="button" id="none">全不选</button>
     <button type="button" id="reverse">反选</button>
 </div>
 
 <script>
-    $(document).ready(function{
-        $("#all").click(function{$("input[type='checkbox']").prop("checked",true)});
-        $("#none").click(function{$("input[type='checkbox']").prop("checked",false)});
-        $("#reverse").click(function{
-            $("input[type='checbox']").each(function(){
+    $(document).ready(function(){
+        $("#all").click(function(){$("input[type='checkbox']").prop("checked",true)});
+        $("#none").click(function(){$("input[type='checkbox']").prop("checked",false)});
+        $("#reverse").click(function(){
+            $("input[type='checkbox']").each(function(){
                 $(this).prop("checked", !$(this).prop("checked"));
             })
         })
-    })
+    });
 </script>
 
 </body>
