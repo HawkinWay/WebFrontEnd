@@ -86,7 +86,7 @@
             statusText.style.color  = 'green';
             statusText.innerText = `原生GPS坐标获取成功!经度: ${lon.toFixed(4)},纬度: ${lat.toFixed(4)}。正在转换偏离值...`;
 
-            const convertor = new BMapGL.convertor();
+            const convertor = new BMapGL.Convertor();
             const pointArr = [new BMapGL.Point(lon, lat)];
 
             convertor.translate(pointArr, 1, 5, function(data) {
