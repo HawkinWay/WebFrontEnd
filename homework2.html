@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<style>
+  /* 外层容器：限制显示区域，隐藏溢出的部分 */
+  .door-container {
+    width: 300px;
+    height: 200px;
+    border: 2px solid #333;
+    overflow: hidden; /* 关键：隐藏滑出门外的部分 */
+    position: relative;
+    margin: 50px auto;
+  }
+
+  /* 滑动门面板 */
+  .door-panel {
+    width: 100%;
+    height: 100%;
+    background-color: #2196F3;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-family: sans-serif;
+    
+    /* 核心动画属性 */
+    position: absolute;
+    left: 0;
+    /* 初始状态：向上平移100%，完全隐藏 */
+    transform: translateY(100%); 
+    /* 设置0.4秒的平滑过渡效果 */
+    transition: transform 0.4s ease-in-out; 
+  }
+
+  /* 鼠标悬停在容器上时，门面板滑入 */
+  .door-container:hover .door-panel {
+    transform: translateY(0); /* 恢复到正常位置 */
+  }
+</style>
+</head>
+<body>
+
+  <div class="door-container">
+    <div class="door-panel">我是滑出来的门</div>
+  </div>
+  <p style="text-align: center;">请将鼠标移到上方的方框区域</p>
+
+</body>
+</html>

@@ -4,14 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title> 
+    <style>
+        .dnavbar{
+            background-color: rgb(98, 98, 98);
+            padding: 5px;
+            margin: 5px;
+            border: 3px solid rgb(255, 0, 0);
+        }
+
+        .dnavbar ul{
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dnavbar a{
+            display: block;
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-family: sans-serif; 
+        }
+
+        .dnavbar a:hover{
+            background-color: brown;
+        }
+    </style>
 </head>
 <body>
     <h1>5.使用 JavaScript 动态生成导航菜单数据</h1>
-    <div id="navbar"></div>
+    <nav id="navbar" class="dnavbar"></nav>
     <script>
+        const menuData = [
+            { name: '首页', url: '#home' },
+            { name: '产品中心', url: '#products' },
+            { name: '服务支持', url: '#services' },
+            { name: '新闻资讯', url: '#news' },
+            { name: '关于我们', url: '#about' }
+        ];
         
         const container = document.getElementById('navbar');
-        container.appendChild()
+
+        const ul = document.createElement('ul');
+        
+        menuData.forEach(item => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            
+            a.href = item.url;
+            a.textContent = item.name;
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+
+        container.appendChild(ul);
     </script>
 </body>
 </html>
