@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 响应式精简版</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 仅用于让占位灰色块显现，非 Bootstrap 类名 */
+        .fake-img { background-color: #aaa; width: 100%; height: 150px; }
+    </style>
+</head>
+<body>
+
+    <header class="p-5 bg-body-secondary text-center">
+        <h1>请输入文本</h1>
+        <p>重置浏览器大小查看效果</p>
+    </header>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">网站名</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="myNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#">主页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">页面 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">页面 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <div class="row">
+            
+            <aside class="col-sm-4">
+                <h2>关于我</h2>
+                <div class="fake-img">图像</div>
+                <!-- <img src="https://dailycollegian.com/wp-content/uploads/2022/04/dark-knight-1.jpeg" alt="我的图片"> -->
+                <p>关于我的介绍..</p>
+                
+                <h3>链接</h3>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="#">链接 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">链接 2</a></li>
+                </ul>
+            </aside>
+
+            <main class="col-sm-8">
+                <h2>标题</h2>
+                <div class="fake-img" style="height: 250px;">图像</div>
+                <p>一些文本..</p>
+                
+                <h2>标题</h2>
+                <div class="fake-img" style="height: 250px;">图像</div>
+                <p>一些文本..</p>
+            </main>
+            
+        </div>
+    </div>
+
+    <footer class="p-4 bg-body-secondary text-center mt-3">
+        <p>底部内容</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
