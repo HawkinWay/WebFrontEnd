@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-commerce</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .table-nav{
+            display: flex;
+            background: white;
+        }
+
+        .tab-btn{
+            padding: 12px 20px;
+            border: none;
+            border: 1px solid white;
+            background-color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active{
+            background-color: white;
+            border-bottom: 2px solid #cf7b13;
+            color: #ef5720;
+        }
+
+        .container{
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f1f1f1;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px #000000;
+            min-height: 400px;
+            width: 90%;
+        }
+
+        img{
+            margin-bottom: 15px;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="table-nav">
+        <button class="tab-btn active" onclick="switchTab(0)">商品详情</button> 
+        <button class="tab-btn" onclick="switchTab(1)">参数规格</button>
+        <button class="tab-btn" onclick="switchTab(2)">用户评价</button>
+    </div>
+
+    <div class="container">
+        <div class="tab-content" style="display: block;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCp4jbB8CG7mTP4hgkCK4v-n74g-qQURoEGg&s" alt="超级自我帽衫">
+            <h3>超级自我帽衫</h3>
+            <p>请输入文本</p>
+        </div>
+
+        <div class="tab-content" style="display: none;">
+            <p>100% 新疆棉，舒适透气</p>
+        </div>
+
+        <div class="tab-content" style="display: none;">
+            <div class="comment-user">
+                <h3>林清醒</h3>
+                <p>认同， +1</p>
+            </div>
+            <div class="comment-user">
+                <h3>籽岷</h3>
+                <p>卧槽不是吧</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(idx){
+            let buttons = document.getElementsByClassName('tab-btn');
+            let contents = document.getElementsByClassName('tab-content');
+
+            for(let i = 0; i < contents.length; i++){
+                contents[i].style.display = 'none';
+                buttons[i].classList.remove('active');
+            }
+
+            contents[idx].style.display = 'block';
+            buttons[idx].classList.add('active');
+        }
+    </script>
+</body>
+</html>

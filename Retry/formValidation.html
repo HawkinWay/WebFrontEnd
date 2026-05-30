@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation</title>
+    <script>
+        function validateForm(){
+            let user = document.getElementById('username').value;
+            let pwd = document.getElementById('password').value;
+            let pwdConfirm = document.getElementById('pwdConfirm').value;
+            let email = document.getElementById('email').value;
+            let number = document.getElementById('number').value;
+
+            if(user === ""){
+                alert("用户名不能为空！");
+                document.getElementById('username').focus();
+                return false;
+            }
+
+            if(pwd.length < 8){
+                alert("密码长度小于8位!");
+                document.getElementById('pwd').focus();
+                return false;
+            }
+
+
+        }
+    </script>
+    </body>
+</head>
+<body>
+    <form class="comment" onsubmit="return validateForm()">
+        <label>用户名: </label>
+        <input type="text" id="username" placeholder="请输入用户名">
+
+        <label>密码： </label>
+        <input type="password" id="password" placeholder="请输入至少8位密码">
+        
+        <label>确认密码： </label>
+        <input type="password" id="pwdConfirm" placeholder="请确认密码">
+
+        <label>邮箱： </label>
+        <input type="email" id="email" placeholder="请输入邮箱地址">
+
+        <label>电话号: </label>
+        <input type="tel" id="number" placeholder="请输入11位电话号码">
+
+        <button type="submit" class="submit-btn">提交</button>
+    </form>
+</html>
