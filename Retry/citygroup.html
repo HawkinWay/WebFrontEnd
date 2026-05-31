@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>city group</title>
+    <script>
+        function changeCity(){
+            const cityGroup = [
+                ["南京市","苏州市","无锡市","常州市"],
+                ["杭州市","宁波市","绍兴市","温州市"],
+                ["合肥市","芜湖市","黄山市","阜阳市"]
+            ];
+
+            let provinceSelect = document.getElementById('province');
+            let citySelect = document.getElementById('city');
+
+            let idx = provinceSelect.selectedIndex - 1;
+            citySelect.innerHTML = '<option>--请选择城市--</option>';
+
+            if(idx >= 0){
+                let provinceCityGroup = cityGroup[idx];
+                for(let i = 0; i < provinceCityGroup.length; i++){
+                    let option = document.createElement('option');
+                    option.textContent = provinceCityGroup[i];
+                    option.value = i;
+                    citySelect.appendChild(option);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--
+    ⑴ 准备省份类别下拉列表框元素和城市名称下拉列表框元素
+    ⑵ 在省份类别下拉列表框中加入列表选项，定义下拉列表框的change事件
+    事件函数的实现思路是：
+        • 定义一个自定义数组存放城市名称
+        • 通过数组索引的方式，创建每个省份类别对应的城市名称数组
+        • 获得省份类别，选择省份下拉列表框的索引
+        • 依据省份类别索引，将与之相同索引的城市名称数组循环加入城市下拉列表框中
+    -->
+    <div class="province">
+        <span>所在地: </span>
+        <select id="province" onchange="changeCity()">
+            <option value="">--请选择省份--</option>
+            <option value="0">江苏省</option>
+            <option value="1">浙江省</option>
+            <option value="2">安徽省</option>
+        </select>
+
+        <select id="city">
+            <option value="">--请选择城市--</option>
+        </select>
+    </div>
+</body>
+</html>

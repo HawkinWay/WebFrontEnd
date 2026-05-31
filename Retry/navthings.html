@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navthings</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            font-family: sans-serif;
+            background-color: #f1f1f1;
+        }
+
+        .navbar{
+            display: flex;
+            background-color: rgb(48, 48, 62);
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            /* border:2px solid rgb(17, 161, 111); */
+        }
+        
+        .navbar ul{
+            display: flex;
+            list-style: none;
+            /* border:2px solid rgb(9, 17, 0); */
+        }
+        
+        .navbar a{
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: #f1f1f1;
+            /* border:2px solid blue; */
+        }
+
+        .navbar a:hover{
+            background-color: white;
+            color: #333;
+        }
+
+        header{
+            text-align: center;
+        }
+
+        .sidebar{
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .sidebar ul{
+            display: flex;
+            list-style: none;
+        }
+
+        .sidebar a{
+            display: block;
+            text-decoration: none;
+            padding: 2px 10px;
+            color: #484862;
+        }
+
+        .sidebar a:hover{
+            background-color: #484862;
+            color: #f1f1f1;
+        }
+
+        footer{
+            background-color: rgb(48, 48, 62);
+            color: #f1f1f1;
+            text-align: center;
+        }
+
+
+        footer{
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        footer .foot1{
+            font-size: 12px;
+        }
+
+        footer .foot2{
+            font-size: 10px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">主页</a></li>
+            <li><a href="#">精选</a></li>
+            <li><a href="#">分区</a></li>
+            <li><a href="#">直播</a></li>
+            <li><a href="#">游戏</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">搜索</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>请输入文本</h1>
+        <p>每日推荐</p>
+    </header>
+
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#">国产</a></li>
+            <li><a href="#">日韩</a></li>
+            <li><a href="#">欧美</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">3D</a></li>
+            <li><a href="#">动作</a></li>
+            <li><a href="#">悬疑</a></li>
+        </ul>
+    </nav>
+
+    <footer>
+        <p class="foot1">本站未立足于美利坚合众国，对全球华人服务，不受北美法律保护</p>
+        <p class="foot2">&copy爽爽看</p>
+    </footer>
+</body>
+</html>
