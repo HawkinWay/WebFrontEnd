@@ -12,19 +12,46 @@
             let email = document.getElementById('email').value;
             let number = document.getElementById('number').value;
 
+            let userReg = /^\w+$/;
             if(user === ""){
                 alert("用户名不能为空！");
+                document.getElementById('username').focus();
+                return false;
+            }
+            if(!userReg.test(user)){
+                alert("用户名只能包含字母、数字和下划线！");
                 document.getElementById('username').focus();
                 return false;
             }
 
             if(pwd.length < 8){
                 alert("密码长度小于8位!");
-                document.getElementById('pwd').focus();
+                document.getElementById('password').focus();
+                return false;
+            }
+            if(pwdConfirm !== pwd){
+                alert("两次输入的密码不一致，请重新输入！");
+                document.getElementById('confirm_password').focus();
                 return false;
             }
 
+            let emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if(!emailReg.test(email)){
+                alert("邮箱格式错误！");
+                document.getElementById('username').focus();
+                return false;
+            }
 
+            let numberReg = /^1\d{10}$/
+            if(!phoneReg.test(number)){
+                alert("电话号码格式不正确！必须是11位且以1开头的数字。");
+                document.getElementById('number').focus();
+                return false;
+            }
+
+            // 所有验证通过
+            alert("表单验证成功，允许提交！");
+            return true;
         }
     </script>
     </body>
