@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>searchBox</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+           $('#iptext').focus(function(){
+            if($(this).val() === "请输入文本"){
+                $(this).val("");
+                $(this).css('color', 'black');
+            }
+           });
+
+           $('#iptext').blur(function(){
+            if($(this).val().trim() === ""){
+                $(this).val("请输入文本");
+                $(this).css('color', 'grey');
+            }
+           });
+        });
+    </script>
+</head>
+<body>
+    <div class="text">
+        <input type="text" id="iptext" value="请输入文本" style="color: grey;">
+    </div>
+</body>
+</html>

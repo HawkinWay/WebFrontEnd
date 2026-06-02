@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>视频作为页面背景</h1>
-    <video id="video" src="https://youtu.be/wMtRwzt36qM" muted autoplay loop playsinline></video>
-
+    
+    <video id="video" src="https://www.w3schools.com/html/mov_bbb.mp4" muted autoplay loop playsinline></video>
 
     <div class="playerbox">
         <div class="screen" id="screen"></div>
@@ -30,18 +30,19 @@
             margin: 0;
             background-color: #f0f0f0;
             font-family: sans-serif;
+            overflow: hidden;
         }
 
         #video{
-            position: fixed;
+            position: fixed; 
             top: 0;
             left: 0;
             min-width: 100%;
-            min-height: 100%;
+            min-height: 100%; 
             width: auto;
             height: auto;
-            z-index: -100;
-            opacity: 0.5;
+            z-index: -100; 
+            opacity: 0.5; 
             object-fit: cover;
         }
 
@@ -106,14 +107,21 @@
         let currentSong = 0;
         let isPlaying = false;
 
-        const audio = document.getElementById('audio');
-        const screen = document.getElementById('screen');
-        const playButton = document.getElementById('playButton');
+
+        let audio, screen, playButton;
+        
+        window.onload = function() {
+            audio = document.getElementById('audio');
+            screen = document.getElementById('screen');
+            playButton = document.getElementById('playButton');
+            
+            initPlayer(currentSong);
+            audio.addEventListener('ended', nextSong);
+        };
 
         function initPlayer(index) {
             screen.innerText = playlist[index].title;
         }
-        initPlayer(currentSong);
 
         function loadSong(index){
             audio.src = playlist[index].src;
@@ -146,7 +154,6 @@
                 currentSong = 0;
             }
             loadSong(currentSong);
-            
             isPlaying = false;
             playSong();
         }
@@ -157,13 +164,9 @@
                 currentSong = playlist.length - 1;
             }
             loadSong(currentSong);
-            
             isPlaying = false;
             playSong();
         }
-
-        audio.addEventListener('ended', nextSong);
     </script>
-
 </body>
 </html>
