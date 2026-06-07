@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编程题7</title>
+</head>
+<body>
+    <form onsubmit="return validateForm()">
+        用户名：<input type="text" id="username" placeholder="3-20字符,只能包含字母、数字和下划线"><br>
+        密码：<input type="password" id="password" placeholder="不为空"><br>
+        确认密码：<input type="password" id="confirm" placeholder="必须与密码一致"><br>
+        年龄：<input type="text" id="age" placeholder="18-100 之间的整数"><br>
+        电话：<input type="tel" id="tel" placeholder="11 位，以 1 开头"><br>
+        <button type="submit">提交</button>
+    </form>
+    <script>
+        function validateForm(){
+            var user = document.getElementById('username').value;
+            var pwd = document.getElementById('password').value;
+            var pwdCfm = document.getElementById('confirm').value;
+            var age = document.getElementById('age').value;
+            var tel = document.getElementById('tel').value;
+    
+            var userReg = /^\w{3,20}$/;
+            if(!userReg.test(user)){
+                alert("请输入3-20字符,只包含字母 数字 下划线！");
+                return false;
+            }
+    
+            if(pwd === ""){
+                alert("密码不能为空!");
+                return false;
+    
+            }
+    
+            if(pwdCfm !== pwd){
+                alert("两次密码不一致!");
+                return false;
+            }
+    
+            var ageReg = /^1[89]|[2-9]\d|100$/;
+            if(!ageReg.test(age)){
+                alert("年龄必须在18-100之间!");
+                return false;
+            }
+    
+            var telReg = /^1\d{10}$/;
+            if(!telReg.test(tel)){
+                alert("电话必须是11位, 且1开头!");
+                return false;
+            }
+            
+            return true;
+        }
+    </script>
+</body>
+</html>

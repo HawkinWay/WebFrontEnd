@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编程题6</title>
+</head>
+<body>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>列标题1</th>
+                <th>列标题2</th>
+                <th>列标题3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>行1,列1</td>
+                <td>行1,列2</td>
+                <td>行1,列3</td>
+            </tr>
+            <tr>
+                <td>行2,列1</td>
+                <td>行2,列2</td>
+                <td>行2,列3</td>
+            </tr>
+            <tr>
+                <td>行3,列1</td>
+                <td>行3,列2</td>
+                <td>行3,列3</td>
+            </tr>
+            <tr>
+                <td>行4,列1</td>
+                <td>行4,列2</td>
+                <td>行4,列3</td>
+            </tr>
+            <tr>
+                <td>行5,列1</td>
+                <td>行5,列2</td>
+                <td>行5,列3</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const rows = document.querySelectorAll('tbody tr');
+
+        rows.forEach((row, index) => {
+            if(index % 2 === 0){
+                row.style.backgroundColor = '#f2f2f2';
+            }else{
+                row.style.backgroundColor = '#ffffff';
+            }
+        });
+    </script>
+</body>
+</html>

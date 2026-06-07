@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编程题8</title>
+</head>
+<body>
+    请输入密码：<input type="text" id="pwd">
+    密码强度：<span id="msg">无</span>
+
+    <script>
+        const pwd = document.getElementById('pwd');
+        const msg = document.getElementById('msg');
+
+        pwd.oninput = function(){
+            const val = pwd.value;
+            
+            if(val === ""){
+                msg.innerHTML = "无";
+                return;
+            }
+
+            //  弱：纯数字或纯字母； 
+            //  中：数字+字母； 
+            //  强：数字+字母+特殊字符，且长度≥8。
+            const nums = /\d/.test(val);              //包含数字
+            const chars = /[a-zA-Z]/.test(val);    //包含字母
+            const specs = /[^a-zA-Z0-9]/.test(val);        //包含特殊字符 
+    
+            if(val.length >= 8 && nums && chars && specs){
+                msg.innerHTML = "强";
+            }
+            else if(nums && chars){
+                msg.innerHTML = "中";
+            }
+            else{
+                msg.innerHTML = "弱";
+            }
+        };
+    </script>
+</body>
+</html>

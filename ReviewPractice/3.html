@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编程题3</title>
+</head>
+<body>
+    <div class="container">
+        <input type="checkbox" class="box" id="唱">唱<br>
+        <input type="checkbox" class="box" id="跳">跳<br>
+        <input type="checkbox" class="box" id="rap">rap<br>
+        <input type="checkbox" class="box" id="篮球">篮球<br>
+        <button type="button" id="btn" onClick="selectAll()">全选</button>
+    </div>
+
+    <script>
+        function selectAll(){
+           const checkboxes = document.querySelectorAll('.box');
+           const isAllChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+           checkboxes.forEach(checkbox => {
+                checkbox.checked = !isAllChecked;
+           });
+        }
+    </script>
+</body>
+</html>
