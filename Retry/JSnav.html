@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Navigation Bar</title>
+</head>
+<body>
+    <div id="jsnav"></div>
+    <script>
+        const ul = document.createElement("ul");
+        
+        for(let i = 0; i < 5; i++){
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = "#";
+            a.textContent = "link " + (i + 1);
+            a.style.textDecoration = "none";
+            li.appendChild(a);
+            ul.appendChild(li);
+        }
+        
+        const jsnav = document.getElementById("jsnav");
+        ul.style.listStyle = "none";
+        ul.style.display = "flex";
+        ul.style.gap = "20px";
+        jsnav.appendChild(ul);
+    </script>
+</body>
+</html>

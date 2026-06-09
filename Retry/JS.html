@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+    <style>
+        body{
+            background-color: rgb(84, 89, 109);
+        }
+
+        div{
+            margin-top: 12px;
+
+        }
+
+        .ckbSelectAll{
+            width: 50vh;
+            padding: 6px;
+            background-color: #4e4e4e;
+        }
+        
+        button{
+            padding: 4px;
+            background-color: #544f4f;
+        }
+
+        #unorderedlist{
+            display: flex;
+            text-align: center;
+            width: 50vh;
+            padding: 6px;
+            background-color: #5f6c55;
+        }
+
+        #tablediv{
+            width: 20vb;
+        }
+
+        #tablediv td{
+            text-align: center;
+            /* background-color: #d7d7d7; */
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ckbSelectAll">
+            <input type="checkbox" class="cb">Genshin Impact<br/>
+            <input type="checkbox" class="cb">Honor of King<br/>
+            <input type="checkbox" class="cb">Grand Theft Auto V<br/>
+            <input type="checkbox" class="cb">Batman: Arkham Knight<br/>
+            <button type="submit" onClick="selectAll()">Select All</button>
+        </div>
+
+        <div id="unorderedlist">
+            <h3>Unordered List</h3>
+        </div>
+
+        <div id="tablediv">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Column 1</td>
+                        <td>Column 2</td>
+                        <td>Column 3</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>(0,0)</td>
+                        <td>(0,1)</td>
+                        <td>(0,2)</td>
+                    </tr>
+                    <tr>
+                        <td>(1,0)</td>
+                        <td>(1,1)</td>
+                        <td>(1,2)</td>
+                    </tr>
+                    <tr>
+                        <td>(2,0)</td>
+                        <td>(2,1)</td>
+                        <td>(2,2)</td>
+                    </tr>
+                    <tr>
+                        <td>(3,0)</td>
+                        <td>(3,1)</td>
+                        <td>(3,2)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function selectAll(){
+            const checkboxes = document.querySelectorAll('.cb');
+
+            const isAllSelected = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+            checkboxes.forEach(checkbox =>{
+                checkbox.checked = !isAllSelected;
+            });
+        }
+
+        const ul = document.createElement("ul");
+        for(let i = 0; i < 10; i++){
+            const li = document.createElement("li");
+            li.textContent = i;
+            li.style.margin = "14px";
+            li.style.color = "#a09895"; 
+            ul.appendChild(li);
+        }
+        ul.style.listStyle = "none";
+        ul.style.display = "flex";
+        const unorderedlist = document.getElementById("unorderedlist");
+        unorderedlist.appendChild(ul);
+
+        const rows = document.querySelectorAll("#tablediv tr");
+        rows.forEach((row, index) =>{
+            if(index % 2 === 0){
+                row.style.backgroundColor = "#c2c2c2";
+            }
+            else{
+                row.style.backgroundColor = "#ffffff";
+            }
+        });
+    </script>
+</body>
+</html>
