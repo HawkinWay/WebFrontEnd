@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boostrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: #b0b894;
+            font-family: sans-serif;
+        }
+
+        .card{
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+
+        table thead{
+            background-color: #f8f8f8;
+            font-weight: bold;
+        }
+
+        table td{
+            padding: 12px;
+            background-color: #f1f1f1;
+            text-align: center;
+            border: 1px solid #000;
+        }
+
+        .navbar{
+            display: flex;
+            background-color: #a9b970;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar ul{
+            display: flex;
+            list-style: none;
+        }
+        
+        .navbar a{
+            text-decoration: none;
+            color: #613131;
+            display: block;
+            padding: 7px;
+        }
+
+        .navbar a:hover{
+            background-color: #8f593c;
+            color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row g-2">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">User</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="card">
+                    <img src="https://picsum.photos/400/300" class="card-img-fixed" alt="pics">
+                    <div class="card-body">
+                        <h4>Card1 title</h4>
+                        <p class="card-desc">here's some words.......</p>
+                        <a href="#" class="btn btn-primary card-btn">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-3">
+                <div class="table-responsive">
+                     <table>
+                        <thead style="font-weight: bold;">
+                            <tr>
+                                <td>column 1</td>
+                                <td>column 2</td>
+                                <td>column 3</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>(1,1)</td>
+                                <td>(1,2)</td>
+                                <td>(1,3)</td>
+                            </tr>
+                            <tr>
+                                <td>(2,1)</td>
+                                <td>(2,2)</td>
+                                <td>(2,3)</td>
+                            </tr>
+                            <tr>
+                                <td>(3,1)</td>
+                                <td>(3,2)</td>
+                                <td>(3,3)</td>
+                            </tr>
+                        </tbody>
+                     </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boostrap Cards</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card{
+            display: flex;
+            flex-direction: column;
+            background-color: #e2e2e2;
+        }
+
+        .card-img-fixed{
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .words{
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <img src="https://picsum.photos/400/300" class="card-img-fixed" alt="pics">
+                    <h3>Card1</h3>
+                    <p class="words">some words</p>
+                    <a href="#" class="btn btn-primary card-btn">Details</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <img src="https://picsum.photos/400/300" class="card-img-fixed" alt="pics">
+                    <h3>Card2</h3>
+                    <p class="words">some words</p>
+                    <a href="#" class="btn btn-primary card-btn">Details</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <img src="https://picsum.photos/400/300" class="card-img-fixed" alt="pics">
+                    <h3>Card3</h3>
+                    <p class="words"> 
+                        I used to rule the world 
+                        Seas would rise when I gave the word 
+                        Now in the morning, I sleep alone Sweep the streets 
+                        I used to own I used to roll the dice
+                        Feel the fear in my enemy's eyes
+                        Listen as the crowd would sing:
+                        "Now the old king is dead!Long live the king!" 
+                        One minute I held the key
+                        Next the walls were closed on me
+                        And I discovered that my castles stand
+                        Upon pillars of salt' pillars of sand
+                        I hear Jerusalem bells are ringing
+                        Roman Cavalry choirs are singing
+                        Be my mirror my sword and shield
+                        My missionaries in a foreign field
+                        For some reason I can't explain
+                        Once you know there was never'
+                    </p>
+                    <a href="#" class="btn btn-primary card-btn">Details</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <img src="https://picsum.photos/400/300" class="card-img-fixed" alt="pics">
+                    <h3>Card4</h3>
+                    <p class="words">some words</p>
+                    <a href="#" class="btn btn-primary card-btn">Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
