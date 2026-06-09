@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular Expression</title>
+</head>
+<body>
+    <form>
+        Username: <input type="text" id="username" placeholder="3-20 chars"><br>
+        Password: <input type="text" id="password" placeholder="not empty"><br>
+        Safety: <span id="msg">None</span><br>
+        Confirm Password: <input type="text" id="confirm" placeholder="must be consistent"><br>
+        Age: <input type="text" id="age" placeholder="18-100"><br>
+        Telephone: <input type="tel" id="tel" placeholder="11-digit"><br>
+        <button type="button" onClick="validForm()">Submit</button>
+    </form>
+    <script>
+        const pwd = document.getElementById("password");
+        const msg = document.getElementById("msg");
+
+        pwd.oninput = function(){
+            const val = pwd.value;
+            if(val === ""){
+                msg.innerHTML = "None";
+                return;
+            }
+
+            const hasNums = /\d/.test(val);
+            const hasChars = /[a-zA-Z]/.test(val);
+            const hasSepcs = /[\W_]/.test(val);     // /[^a-zA-Z0-9]/
+
+            if(val.length >= 8 && hasNums && hasChars && hasSepcs){
+                msg.innerHTML = "Very Strong";
+            }
+            else if(hasNums && hasChars){
+                msg.innerHTML = "Medium Strong";
+            }
+            else{
+                msg.innerHTML = "weak";
+            }
+        };
+
+
+        function validForm(){
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const confirm = document.getElementById("confirm").value;
+            const age = document.getElementById("age").value;
+            const tel = document.getElementById("tel").value;
+
+            const usrReg = /^\w{3,20}$/;
+            if(!usrReg.test(username)){
+                alert("Username Error!");
+                return false;
+            }
+
+            if(password === ""){
+                alert("Password Error!");
+                return false;
+            }
+
+            if(confirm !== password){
+                alert("Confirm Error!");
+                return false;
+            }
+
+            if(age === "" || age < 18 || age > 100){
+                alert("Age Error!");
+                return false;
+            }
+
+            const telReg = /^1\d{10}$/;
+            if(!telReg.test(tel)){
+                alert("Telephone Number Error!");
+                return false;
+            }
+
+
+            return true;
+        }
+    </script>
+</body>
+</html>
